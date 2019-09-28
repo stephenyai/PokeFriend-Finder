@@ -1,0 +1,26 @@
+{
+  "name": "PokeFriend-Finder",
+  "version": "1.0.0",
+  "description": "Answer 10 quick questions to find the Pokemon that best matches with you.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stephenyai/PokeFriend-Finder.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stephenyai/PokeFriend-Finder/issues"
+  },
+  "homepage": "https://github.com/stephenyai/PokeFriend-Finder#readme",
+  "dependencies": {
+    "express": "4.17.1",
+    "mysql": "2.17.1",
+    "path": "0.12.7"
+  }
+}

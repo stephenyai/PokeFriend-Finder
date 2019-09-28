@@ -1,0 +1,28 @@
+.box-container {
+	display: flex;
+	justify-content: center;
+	border: 1px solid gray;
+	margin-top: 30px;
+}
+
+.box {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 10px;
+}
+
+.title {
+	padding-bottom: 50px;
+}
+
+.ball {
+	padding: 15px;
+	width: 65px;
+	height: 65px;
+}
+
+.section {
+	font-family: 'Press Start 2P', cursive;
+	padding: 20px;
+}
