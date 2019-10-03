@@ -21,10 +21,13 @@ CREATE TABLE scores (
 	id INT NOT NULL AUTO_INCREMENT,
 	question_id INT NOT NULL,
 	friend_id INT NOT NULL,
-	score INT NOT NULL,
+	answer INT NOT NULL,
 	PRIMARY KEY(id),
 	FOREIGN KEY (question_id) REFERENCES questions(id),
 	FOREIGN KEY (friend_id) REFERENCES friends(id),
-	CHECK (score >= 10),
-	CHECK (score <= 10)
+	CHECK (answer >= 0),
+	CHECK (answer <= 5)
 );
+
+
+
