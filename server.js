@@ -28,19 +28,46 @@ app.get('/api/friends', function(req, res){
 });
 
 app.post('/api/friends', function(req, res){
-	console.log(req.body.quest);
+	console.log(req.body);
 
-	if (req.body.quest.length > 1){
+	connection.query('INSERT INTO friends SET ?', {'name': req.body['full-name']}, function (error, results, fields) {
+		if (error) throw error;
+
+		var friendID = results.insertId;
+		console.log(results.insertId);
+
+		var friendsArray = [];
 		for (var i = 0; i < req.body.quest.length; i ++) {
-			connection.query('INSERT INTO scores (answer) VALUES (?)', [req.body.quest[i]], function (error, results, fields) {
-		  if (error) res.send(error)
-		  else res.json(results);
-			});		
+			friendsArray.push([friendID, i+1, req.body.quest[i]])
 		}
 
-	} else {
-		res.send('invalid name')
-	}
+		connection.query('INSERT INTO scores (friend_id, question_id, answer) VALUES ?', [friendsArray] , function (error, results, fields) {
+			if (error) return res.send(error)
+
+			//res.json(results);
+			// query using pavan'
+			connection.query('SELECT question_id, friend_id, t2friend_id, answer_difference FROM 
+(SELECT *, (answer-t2answer) AS answer_difference FROM
+(SELECT *
+FROM scores s1
+LEFT JOIN (SELECT question_id AS t2question_id, friend_id AS t2friend_id, answer AS t2answer
+FROM scores s2) t2
+ON t2question_id = s1.question_id) t3) t4;
+
+', function (error, results, fields) {
+				if (error) return res.send(error)
+				res.json(results); 
+			});
+
+		});		
+
+	});
+
+	// if (req.body.quest.length > 1){
+
+	// } else {
+	// 	res.send('invalid name')
+	// }
 });
 
 app.listen(3000, function(){

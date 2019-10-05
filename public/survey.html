@@ -14,10 +14,21 @@
 	<body>
 		<header class='speaker-form-header'>
 	      <h1>Pok&eacute;Friend Finder</h1>
-	      <p><em>User data goes here</em></p>
 	    </header>
 
 	    <form action='/api/friends' method='post' class='speaker-form'>
+	    	<div class='legacy-form-row'>
+          		<label for='full-name'>Name</label>
+          		<input id='full-name' name='full-name' type='text'/>
+        	</div>
+
+	        <div class='legacy-form-row'>
+	          <label for='photo'>Picture Link</label>
+	          <input id='photo'
+	                 name='photo'
+	                 type='photo'
+	                 placeholder='Insert link here'/>
+	        </div>    
 		</form>	
 
         <div class='form-row'></div>
