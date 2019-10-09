@@ -45,19 +45,13 @@ app.post('/api/friends', function(req, res){
 			if (error) return res.send(error)
 
 			//res.json(results);
-			// query using pavan'
-			connection.query('SELECT question_id, friend_id, t2friend_id, answer_difference FROM 
-(SELECT *, (answer-t2answer) AS answer_difference FROM
-(SELECT *
-FROM scores s1
-LEFT JOIN (SELECT question_id AS t2question_id, friend_id AS t2friend_id, answer AS t2answer
-FROM scores s2) t2
-ON t2question_id = s1.question_id) t3) t4;
-
-', function (error, results, fields) {
-				if (error) return res.send(error)
-				res.json(results); 
-			});
+		// connection.query('SELECT question_id, friend_id, t2friend_id, answer_difference FROM 
+		// 	(SELECT *, (answer-t2answer) AS answer_difference FROM
+		// 	(SELECT * FROM scores s1 LEFT JOIN (SELECT question_id AS t2question_id, friend_id AS t2friend_id, answer AS t2answer FROM scores s2) t2
+		// 	ON t2question_id = s1.question_id) t3) t4;'), function (error, results, fields) {
+		// 	if (error) return res.send(error)
+		// 	res.json(results); 
+		// 	});
 
 		});		
 
@@ -68,6 +62,12 @@ ON t2question_id = s1.question_id) t3) t4;
 	// } else {
 	// 	res.send('invalid name')
 	// }
+	
+	//**Still need to code this
+	//get absolute value 
+	//sum all scores to each friend_id
+	//compare user score with scores - find the least different 
+
 });
 
 app.listen(3000, function(){
